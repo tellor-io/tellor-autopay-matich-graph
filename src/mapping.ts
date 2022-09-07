@@ -5,7 +5,6 @@ import {
   OneTimeTipClaimed,
   TipAdded,
   TipClaimed,
-  SetupDataFeedCall,
 } from "../generated/Contract/Contract"
 import { DataFeedFundedEntity, NewDataFeedEntity, OneTimeTipClaimedEntity, TipAddedEntity, TipClaimedEntity, DataFeedEntity } from "../generated/schema"
 
