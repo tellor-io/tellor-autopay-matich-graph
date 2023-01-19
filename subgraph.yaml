@@ -1,0 +1,35 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Contract
+    network: goerli
+    source:
+      address: "0x1F033Cb8A2Df08a147BC512723fd0da3FEc5cCA7"
+      abi: Contract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - DataFeedFunded
+        - NewDataFeed
+        - OneTimeTipClaimed
+        - TipAdded
+        - TipClaimed
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: DataFeedFunded(indexed bytes32,indexed bytes32,indexed uint256,address,(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256))
+          handler: handleDataFeedFunded
+        - event: NewDataFeed(indexed bytes32,indexed bytes32,bytes,address)
+          handler: handleNewDataFeed
+        - event: OneTimeTipClaimed(indexed bytes32,indexed uint256,indexed address)
+          handler: handleOneTimeTipClaimed
+        - event: TipAdded(indexed bytes32,indexed uint256,bytes,address)
+          handler: handleTipAdded
+        - event: TipClaimed(indexed bytes32,indexed bytes32,indexed uint256,address)
+          handler: handleTipClaimed
+      file: ./src/mapping.ts
