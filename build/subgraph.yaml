@@ -4,10 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: Contract
-    network: goerli
+    network: matic
     source:
       address: "0x9BE9B0CFA89Ea800556C6efbA67b455D336db1D0"
       abi: Contract
+      startBlock: 38439605
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
