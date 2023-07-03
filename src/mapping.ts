@@ -4,10 +4,10 @@ import {
   NewDataFeed,
   OneTimeTipClaimed,
   TipAdded,
-  TipClaimed,
-  SetupDataFeedCall,
+  TipClaimed
 } from "../generated/Contract/Contract"
 import { DataFeedFundedEntity, NewDataFeedEntity, OneTimeTipClaimedEntity, TipAddedEntity, TipClaimedEntity, DataFeedEntity } from "../generated/schema"
+import { BigInt } from '@graphprotocol/graph-ts'
 
 export function handleDataFeedFunded(event: DataFeedFunded): void {
   let entity = new DataFeedFundedEntity(event.block.timestamp.toHex())
@@ -15,9 +15,7 @@ export function handleDataFeedFunded(event: DataFeedFunded): void {
   entity._feedId = event.params._feedId;
   entity._amount = event.params._amount;
   entity._feedFunder = event.params._feedFunder;
-
   entity.save()
-
   // Note: If a handler doesn't require existing field values, it is faster
   // _not_ to load the entity from the store. Instead, create it fresh with
   // `new Entity(...)`, set the fields that should be updated and save the
@@ -55,20 +53,31 @@ export function handleDataFeedFunded(event: DataFeedFunded): void {
 }
 
 export function handleNewDataFeed(event: NewDataFeed): void {
-  
   let contract = Contract.bind(event.address)
 
-  let entity = new NewDataFeedEntity(event.block.timestamp.toHex())
-  entity._queryId = event.params._queryId;
-  entity._feedId = event.params._feedId;
-  entity._queryData = event.params._queryData;
-  entity._feedCreator = event.params._feedCreator
-
-  let dataFeed = new DataFeedEntity(event.block.timestamp.toHex())
+  let dataFeed = DataFeedEntity.load(event.params._feedId.toHex())
 
   let callResult = contract.getDataFeed(event.params._feedId)
 
-  if (callResult){
+  let entity = new NewDataFeedEntity(event.block.timestamp.toHex())
+  
+  entity._queryId = event.params._queryId;
+  entity._feedId = event.params._feedId;
+  entity._queryData = event.params._queryData;
+  entity._feedCreator = event.params._feedCreator;
+
+  if (dataFeed !== null) {
+    dataFeed._balance = callResult.balance
+    dataFeed._interval =  callResult.interval
+    dataFeed._priceThreshold = callResult.priceThreshold
+    dataFeed._reward = callResult.reward
+    dataFeed._startTime = callResult.startTime
+    dataFeed._window = callResult.window
+    dataFeed._queryData = event.params._queryData
+    dataFeed.txnHash = event.transaction.hash
+  } else {
+    dataFeed = new DataFeedEntity(event.params._feedId.toHex())
+    dataFeed._balance = callResult.balance
     dataFeed._interval =  callResult.interval
     dataFeed._priceThreshold = callResult.priceThreshold
     dataFeed._reward = callResult.reward
@@ -77,17 +86,8 @@ export function handleNewDataFeed(event: NewDataFeed): void {
     dataFeed._queryData = event.params._queryData
     dataFeed.txnHash = event.transaction.hash
   }
+    dataFeed.save()
 
-  dataFeed.save()
-  entity.save()
-}
-
-export function handleOneTimeTipClaimed(event: OneTimeTipClaimed): void {
-  let entity = new OneTimeTipClaimedEntity(event.block.timestamp.toHex())
-  entity._queryId = event.params._queryId;
-  entity._amount = event.params._amount;
-  entity._reporter = event.params._reporter;
-  entity.save()
 }
 
 export function handleTipAdded(event: TipAdded): void {
@@ -102,10 +102,25 @@ export function handleTipAdded(event: TipAdded): void {
 }
 
 export function handleTipClaimed(event: TipClaimed): void {
+
+  let contract = Contract.bind(event.address)
+
+  let callResult = contract.getDataFeed(event.params._feedId)
+
   let entity = new TipClaimedEntity(event.block.timestamp.toHex())
   entity._feedId = event.params._feedId;
   entity._queryId = event.params._queryId;
   entity._amount = event.params._amount;
   entity._reporter = event.params._reporter;
   entity.save()
+
+  let dataFeed = DataFeedEntity.load(event.params._feedId.toHex())
+
+  if (dataFeed !== null) {
+    dataFeed._balance = callResult.balance
+  } else {
+    dataFeed = new DataFeedEntity(event.params._feedId.toHex())
+    dataFeed._balance = callResult.balance
+  }
+    dataFeed.save()
 }

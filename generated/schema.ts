@@ -29,6 +29,12 @@ export class DataFeedFundedEntity extends Entity {
     }
   }
 
+  static loadInBlock(id: string): DataFeedFundedEntity | null {
+    return changetype<DataFeedFundedEntity | null>(
+      store.get_in_block("DataFeedFundedEntity", id)
+    );
+  }
+
   static load(id: string): DataFeedFundedEntity | null {
     return changetype<DataFeedFundedEntity | null>(
       store.get("DataFeedFundedEntity", id)
@@ -37,7 +43,11 @@ export class DataFeedFundedEntity extends Entity {
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set id(value: string) {
@@ -46,7 +56,11 @@ export class DataFeedFundedEntity extends Entity {
 
   get _queryId(): Bytes {
     let value = this.get("_queryId");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set _queryId(value: Bytes) {
@@ -55,7 +69,11 @@ export class DataFeedFundedEntity extends Entity {
 
   get _feedId(): Bytes {
     let value = this.get("_feedId");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set _feedId(value: Bytes) {
@@ -64,7 +82,11 @@ export class DataFeedFundedEntity extends Entity {
 
   get _amount(): BigInt {
     let value = this.get("_amount");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set _amount(value: BigInt) {
@@ -73,7 +95,11 @@ export class DataFeedFundedEntity extends Entity {
 
   get _feedFunder(): Bytes {
     let value = this.get("_feedFunder");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set _feedFunder(value: Bytes) {
@@ -99,6 +125,12 @@ export class NewDataFeedEntity extends Entity {
     }
   }
 
+  static loadInBlock(id: string): NewDataFeedEntity | null {
+    return changetype<NewDataFeedEntity | null>(
+      store.get_in_block("NewDataFeedEntity", id)
+    );
+  }
+
   static load(id: string): NewDataFeedEntity | null {
     return changetype<NewDataFeedEntity | null>(
       store.get("NewDataFeedEntity", id)
@@ -107,7 +139,11 @@ export class NewDataFeedEntity extends Entity {
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set id(value: string) {
@@ -116,7 +152,11 @@ export class NewDataFeedEntity extends Entity {
 
   get _queryId(): Bytes {
     let value = this.get("_queryId");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set _queryId(value: Bytes) {
@@ -125,7 +165,11 @@ export class NewDataFeedEntity extends Entity {
 
   get _feedId(): Bytes {
     let value = this.get("_feedId");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set _feedId(value: Bytes) {
@@ -134,7 +178,11 @@ export class NewDataFeedEntity extends Entity {
 
   get _queryData(): Bytes {
     let value = this.get("_queryData");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set _queryData(value: Bytes) {
@@ -143,7 +191,11 @@ export class NewDataFeedEntity extends Entity {
 
   get _feedCreator(): Bytes {
     let value = this.get("_feedCreator");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set _feedCreator(value: Bytes) {
@@ -172,6 +224,12 @@ export class OneTimeTipClaimedEntity extends Entity {
     }
   }
 
+  static loadInBlock(id: string): OneTimeTipClaimedEntity | null {
+    return changetype<OneTimeTipClaimedEntity | null>(
+      store.get_in_block("OneTimeTipClaimedEntity", id)
+    );
+  }
+
   static load(id: string): OneTimeTipClaimedEntity | null {
     return changetype<OneTimeTipClaimedEntity | null>(
       store.get("OneTimeTipClaimedEntity", id)
@@ -180,7 +238,11 @@ export class OneTimeTipClaimedEntity extends Entity {
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set id(value: string) {
@@ -189,7 +251,11 @@ export class OneTimeTipClaimedEntity extends Entity {
 
   get _queryId(): Bytes {
     let value = this.get("_queryId");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set _queryId(value: Bytes) {
@@ -198,7 +264,11 @@ export class OneTimeTipClaimedEntity extends Entity {
 
   get _amount(): BigInt {
     let value = this.get("_amount");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set _amount(value: BigInt) {
@@ -207,7 +277,11 @@ export class OneTimeTipClaimedEntity extends Entity {
 
   get _reporter(): Bytes {
     let value = this.get("_reporter");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set _reporter(value: Bytes) {
@@ -233,13 +307,23 @@ export class TipAddedEntity extends Entity {
     }
   }
 
+  static loadInBlock(id: string): TipAddedEntity | null {
+    return changetype<TipAddedEntity | null>(
+      store.get_in_block("TipAddedEntity", id)
+    );
+  }
+
   static load(id: string): TipAddedEntity | null {
     return changetype<TipAddedEntity | null>(store.get("TipAddedEntity", id));
   }
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set id(value: string) {
@@ -248,7 +332,11 @@ export class TipAddedEntity extends Entity {
 
   get _queryId(): Bytes {
     let value = this.get("_queryId");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set _queryId(value: Bytes) {
@@ -257,7 +345,11 @@ export class TipAddedEntity extends Entity {
 
   get _amount(): BigInt {
     let value = this.get("_amount");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set _amount(value: BigInt) {
@@ -266,7 +358,11 @@ export class TipAddedEntity extends Entity {
 
   get _queryData(): Bytes {
     let value = this.get("_queryData");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set _queryData(value: Bytes) {
@@ -275,7 +371,11 @@ export class TipAddedEntity extends Entity {
 
   get _tipper(): Bytes {
     let value = this.get("_tipper");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set _tipper(value: Bytes) {
@@ -284,7 +384,11 @@ export class TipAddedEntity extends Entity {
 
   get _startTime(): BigInt {
     let value = this.get("_startTime");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set _startTime(value: BigInt) {
@@ -293,7 +397,11 @@ export class TipAddedEntity extends Entity {
 
   get txnHash(): Bytes {
     let value = this.get("txnHash");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set txnHash(value: Bytes) {
@@ -319,6 +427,12 @@ export class TipClaimedEntity extends Entity {
     }
   }
 
+  static loadInBlock(id: string): TipClaimedEntity | null {
+    return changetype<TipClaimedEntity | null>(
+      store.get_in_block("TipClaimedEntity", id)
+    );
+  }
+
   static load(id: string): TipClaimedEntity | null {
     return changetype<TipClaimedEntity | null>(
       store.get("TipClaimedEntity", id)
@@ -327,7 +441,11 @@ export class TipClaimedEntity extends Entity {
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set id(value: string) {
@@ -336,7 +454,11 @@ export class TipClaimedEntity extends Entity {
 
   get _feedId(): Bytes {
     let value = this.get("_feedId");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set _feedId(value: Bytes) {
@@ -345,7 +467,11 @@ export class TipClaimedEntity extends Entity {
 
   get _queryId(): Bytes {
     let value = this.get("_queryId");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set _queryId(value: Bytes) {
@@ -354,7 +480,11 @@ export class TipClaimedEntity extends Entity {
 
   get _amount(): BigInt {
     let value = this.get("_amount");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set _amount(value: BigInt) {
@@ -363,7 +493,11 @@ export class TipClaimedEntity extends Entity {
 
   get _reporter(): Bytes {
     let value = this.get("_reporter");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set _reporter(value: Bytes) {
@@ -389,13 +523,23 @@ export class DataFeedEntity extends Entity {
     }
   }
 
+  static loadInBlock(id: string): DataFeedEntity | null {
+    return changetype<DataFeedEntity | null>(
+      store.get_in_block("DataFeedEntity", id)
+    );
+  }
+
   static load(id: string): DataFeedEntity | null {
     return changetype<DataFeedEntity | null>(store.get("DataFeedEntity", id));
   }
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set id(value: string) {
@@ -404,7 +548,11 @@ export class DataFeedEntity extends Entity {
 
   get _reward(): BigInt {
     let value = this.get("_reward");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set _reward(value: BigInt) {
@@ -413,7 +561,11 @@ export class DataFeedEntity extends Entity {
 
   get _startTime(): BigInt {
     let value = this.get("_startTime");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set _startTime(value: BigInt) {
@@ -422,7 +574,11 @@ export class DataFeedEntity extends Entity {
 
   get _interval(): BigInt {
     let value = this.get("_interval");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set _interval(value: BigInt) {
@@ -431,7 +587,11 @@ export class DataFeedEntity extends Entity {
 
   get _window(): BigInt {
     let value = this.get("_window");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set _window(value: BigInt) {
@@ -440,7 +600,11 @@ export class DataFeedEntity extends Entity {
 
   get _priceThreshold(): BigInt {
     let value = this.get("_priceThreshold");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set _priceThreshold(value: BigInt) {
@@ -449,16 +613,37 @@ export class DataFeedEntity extends Entity {
 
   get _queryData(): Bytes {
     let value = this.get("_queryData");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set _queryData(value: Bytes) {
     this.set("_queryData", Value.fromBytes(value));
   }
 
+  get _balance(): BigInt {
+    let value = this.get("_balance");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set _balance(value: BigInt) {
+    this.set("_balance", Value.fromBigInt(value));
+  }
+
   get txnHash(): Bytes {
     let value = this.get("txnHash");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
   }
 
   set txnHash(value: Bytes) {
